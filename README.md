@@ -3,7 +3,8 @@
 # Autores
 
 **Giovana Ferreira Santos** - 231034707  
-**Leonardo Lopes Cruz** - 242032460
+**Leonardo Lopes Cruz** - 242032460  
+\*\*Melissa de Sousa Santos - 211062295
 
 # Organização do projeto
 
