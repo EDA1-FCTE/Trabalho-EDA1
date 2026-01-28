@@ -7,6 +7,7 @@
 
 # Organização do projeto
 
+```text
 / (Raiz do Projeto)
 │
 ├── main.c // Menu principal
@@ -18,3 +19,4 @@
 ├── produtos.c // Implementação das funções (inserir, listar, buscar produto)
 │
 └── README.md
+```
