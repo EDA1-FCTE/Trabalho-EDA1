@@ -45,11 +45,6 @@ typedef struct cliente
 } cliente;
 
 cliente* cadastrar_cliente (cliente* head);
-
 cliente* cria_lista_clientes();
-
-void listar_clientes(cliente* head);
-
-cliente* buscar_clientes(cliente* head, char* cpf_desejado);
 
 #endif
