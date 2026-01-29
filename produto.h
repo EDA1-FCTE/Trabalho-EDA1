@@ -17,6 +17,11 @@ typedef struct produto
 } produto;
 
 produto* cria_lista_produtos();
+
 produto* cadastrar_produto(produto* head);
+
+void listar_produtos(produto* head);
+
+produto* buscar_produto(produto* head, int codigo);
 
 #endif
