@@ -64,13 +64,18 @@ int main(){
 
                switch (opcao_secundaria)
                {
-               case 1: //CADASTRAR CLIENTES
+                case 1: //CADASTRAR CLIENTES
                 lista_clientes = cadastrar_cliente(lista_clientes);
                 break;
 
-               default:
-               printf("Opcao invalida.\n");
-                break;
+                case 2: //LISTAR TODOS OS CLIENTES
+                listar_clientes(lista_clientes);
+
+                case 3: //BUSCAR CLIENTE
+
+                default:
+                    printf("Opcao invalida.\n");
+                    break;
                }
 
 
