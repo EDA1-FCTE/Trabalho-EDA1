@@ -68,6 +68,28 @@ cliente* cadastrar_cliente(cliente* head){
     return novo_cliente;
 }
 
+void listar_clientes(cliente* head){
+    cliente* cliente_atual = head;
+
+    if(cliente_atual != NULL){
+        printf("Nome: %s | CPF: %s \n", cliente_atual->nome, cliente_atual->CPF);
+        listar_clientes(cliente_atual->prox);
+    }
+
+}
+
+cliente* buscar_clientes(cliente* head, char* cpf_desejado){
+    cliente* cliente_atual = head;
+    
+    if (cliente_atual == NULL){
+        return NULL;
+    }
+    if (strcmp(cliente_atual->CPF, cpf_desejado) == 0){
+        return cliente_atual;
+    }
+    return buscar_clientes(cliente_atual->prox, cpf_desejado);
+}
+
 /* int main(){
     
 } */
