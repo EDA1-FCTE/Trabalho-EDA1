@@ -37,3 +37,24 @@ produto* cadastrar_produto(produto* head){
 
     return head;
 }
+
+void listar_produtos(produto* head){
+    produto* produto_atual = head;
+
+    if (produto_atual != NULL){
+        printf("Nome: %s | Codigo: %d | Preco: R$: %.2f \n", produto_atual->nome, produto_atual->codigo, produto_atual->preco);
+        listar_produtos(produto_atual-> prox);
+    }
+}
+
+produto* buscar_produto(produto* head, int codigo){
+    produto* produto_atual = head;
+    while (produto_atual != NULL)
+    {
+        if(produto_atual->codigo == codigo){
+            return produto_atual;
+        }
+        else produto_atual= produto_atual->prox;
+    }
+    return NULL;
+}
