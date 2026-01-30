@@ -97,7 +97,7 @@ int main(){
                 switch (opcao_secundaria)
                 {
                 case 1:
-                    lista_produtos = cadastrar_produto(lista_produtos);
+                    
                     break;
                 
                 default:
