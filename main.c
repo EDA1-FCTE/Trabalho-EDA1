@@ -83,15 +83,30 @@ int main(){
             
             break;
         
-        
-        
-
-
+    
         case 2:
             /* code */
             break;
         case 3:
-            /* code */
+     
+            do
+            {
+                cria_menu_produtos();
+                scanf("%d", &opcao_secundaria);
+
+                switch (opcao_secundaria)
+                {
+                case 1:
+                    lista_produtos = cadastrar_produto(lista_produtos);
+                    break;
+                
+                default:
+                    break;
+                }
+
+            } while (opcao_secundaria != 0);
+            
+            
             break;
         case 0:
             /* code */
