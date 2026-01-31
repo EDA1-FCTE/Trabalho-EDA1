@@ -57,4 +57,6 @@ cliente* editar_cliente(cliente* head, char* cpf_para_alterar);
 void deletar_cliente(cliente* head, char* cpf_para_deletar);
 
 void deletar_items_carrinho(item_carrinho* item);
+
+cliente* escolhe_cliente_comprador(cliente* head);
 #endif

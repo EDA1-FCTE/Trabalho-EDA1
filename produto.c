@@ -35,7 +35,7 @@ produto* cadastrar_produto(produto* head){
 
     printf("Cadastro finalizado!\n");
 
-    return head;
+    return novo_produto;
 }
 
 void listar_produtos(produto* head){
