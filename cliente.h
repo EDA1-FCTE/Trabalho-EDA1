@@ -52,5 +52,5 @@ void listar_clientes(cliente* head);
 
 cliente* buscar_clientes(cliente* head, char* cpf_desejado);
 
-cliente* escolhe_cliente_comprador(cliente* listar_clientes);
+cliente* escolhe_cliente_comprador(cliente* head);
 #endif

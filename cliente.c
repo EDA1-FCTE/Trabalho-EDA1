@@ -91,14 +91,14 @@ cliente* buscar_clientes(cliente* head, char* cpf_desejado){
 }
 
 
-cliente* escolhe_cliente_comprador(cliente* listar_clientes){
+cliente* escolhe_cliente_comprador(cliente* head){
     
     char cpf_comprador[15];
     
     printf("Digite o CPF do cliente comprador: ");
     scanf(" %[^\n]", cpf_comprador);
 
-    cliente* cliente_encontrado = buscar_clientes(listar_clientes, cpf_comprador);
+    cliente* cliente_encontrado = buscar_clientes(head, cpf_comprador);
 
     if(cliente_encontrado == NULL){
         printf("\nCliente nao encontrado\n");
