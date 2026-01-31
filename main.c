@@ -51,6 +51,7 @@ void cria_menu_carrinho(cliente* referencia){
 int main(){
 
     cliente* lista_clientes = cria_lista_clientes();
+    produto* lista_produtos = cria_lista_produtos();
 
     int opcao_principal, opcao_secundaria;
 
