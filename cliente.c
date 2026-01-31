@@ -91,18 +91,62 @@ cliente* buscar_clientes(cliente* head, char* cpf_desejado){
 }
 
 
-cliente* escolhe_cliente_comprador(cliente* listar_clientes){
+cliente* escolhe_cliente_comprador(cliente* head){
     
     char cpf_comprador[15];
     
     printf("Digite o CPF do cliente comprador: ");
     scanf(" %[^\n]", cpf_comprador);
 
-    cliente* cliente_encontrado = buscar_clientes(listar_clientes, cpf_comprador);
+    cliente* cliente_encontrado = buscar_clientes(head, cpf_comprador);
 
     if(cliente_encontrado == NULL){
         printf("\nCliente nao encontrado\n");
     }
 
     return cliente_encontrado;
+}
+
+
+void adicionar_ao_carrinho(cliente* head, produto* phead, int quantidade_desejada){
+
+    if(phead == NULL){
+        printf("\nProduto nao encontrado\n");
+        return;
+    }
+
+    if(phead->quantidade < quantidade_desejada){
+        printf("\nExistem apenas %d %s disponiveis no estoque", phead->quantidade, phead->nome);
+        return;
+    }
+
+    if(quantidade_desejada <= 0){
+        printf("\nSelecione pelo menos 1 unidade do produto");
+        return;
+    }
+
+    item_carrinho* item_desejado = (item_carrinho*) calloc(1, sizeof(item_carrinho));
+    if(item_desejado == NULL){
+        printf("\nErro ao alocar memoria\n");
+        return;
+    }
+
+    item_desejado->codigo_produto = phead->codigo;
+    strcpy(item_desejado->nome , phead->nome);
+    item_desejado->preco = phead->preco;
+    item_desejado->quantidade = quantidade_desejada;
+
+    if(head->carrinho_do_cliente == NULL){
+        head->carrinho_do_cliente = item_desejado;
+    } else{
+        item_carrinho* temp = head->carrinho_do_cliente;
+        while (temp->prox != NULL)
+        {
+            temp = temp->prox;
+        }
+        temp->prox = item_desejado;
+    }
+
+    phead->quantidade -= quantidade_desejada; //subtrai a quantidade comprada do estoque
+    printf("\nProduto %s | %d unidade(s) | adicionado ao carrinho com sucesso", item_desejado->nome, quantidade_desejada);
 }

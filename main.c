@@ -102,7 +102,7 @@ int main(){
             /* code */
             break;
 
-        case 3:
+        case 3: //modo compra
         
                 cria_menu_modo_compra();
                 cliente* cliente_comprador = escolhe_cliente_comprador(lista_clientes);
@@ -120,6 +120,17 @@ int main(){
                 {
                 case 1:
                     
+                    printf("\nDigite o codigo do produto: ");
+                    int codigo_produto;
+                    scanf("%d", &codigo_produto);
+                    produto* produto_desejado = buscar_produto(lista_produtos, codigo_produto);
+
+                    printf("\nDigite a quantidade de %s: ", produto_desejado->nome);
+                    int quantidade_produto;
+                    scanf("%d", &quantidade_produto);
+
+                    adicionar_ao_carrinho(cliente_comprador, produto_desejado, quantidade_produto);
+
                     break;
                 
                 case 2:
