@@ -1,8 +1,8 @@
 /* **************************************************************************
-*
-*
-*
-*************************************************************************** */
+ *
+ *
+ *
+ *************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,7 +10,8 @@
 #include "cliente.h"
 #include "produto.h"
 
-void cria_menu_inicial(){
+void cria_menu_inicial()
+{
     printf("\n === MENU INICIAL ===\n");
     printf("(1) Gerenciar Clientes Cadastrados\n");
     printf("(2) Gerenciar Produtos Cadastrados\n");
@@ -19,7 +20,8 @@ void cria_menu_inicial(){
     printf("Digite o numero referente a sua opcao: \n");
 }
 
-void cria_menu_clientes(){
+void cria_menu_clientes()
+{
     printf("\n=== MENU CLIENTES ===\n");
     printf("(1) Cadastrar Cliente\n");
     printf("(2) Listar Todos os Clientes\n");
@@ -30,7 +32,8 @@ void cria_menu_clientes(){
     printf("Digite o numero referente a sua opcao: \n");
 }
 
-void cria_menu_produtos(){
+void cria_menu_produtos()
+{
     printf("\n=== MENU PRODUTOS ===\n");
     printf("(1) Cadastrar Produto\n");
     printf("(2) Listar Todos os Produtos \n");
@@ -41,11 +44,13 @@ void cria_menu_produtos(){
     printf("Digite o numero referente a sua opcao: \n");
 }
 
-void cria_menu_modo_compra(){
+void cria_menu_modo_compra()
+{
     printf("\n=== MENU COMPRAS ===\n");
 }
 
-void cria_menu_carrinho(cliente* referencia){
+void cria_menu_carrinho(cliente *referencia)
+{
     printf("\n=== CARRINHO %s ===\n", referencia->nome);
     printf("1. Adicionar Produto ao Carrinho\n");
     printf("2. Ver Carrinho\n");
@@ -54,74 +59,103 @@ void cria_menu_carrinho(cliente* referencia){
     printf("Escolha: ");
 }
 
-int main(){
+int main()
+{
 
-    cliente* lista_clientes = cria_lista_clientes();
-    produto* lista_produtos = cria_lista_produtos();
+    cliente *lista_clientes = cria_lista_clientes();
+    produto *lista_produtos = cria_lista_produtos();
 
     int opcao_principal, opcao_secundaria;
 
-    do{
+    do
+    {
         cria_menu_inicial();
         scanf("%d", &opcao_principal);
 
         switch (opcao_principal)
         {
-        case 1: //GERENCIAR CLIENTES CADASTRADOS
+        case 1: // GERENCIAR CLIENTES CADASTRADOS
             do
             {
-               cria_menu_clientes();
-               scanf("%d", &opcao_secundaria);
+                cria_menu_clientes();
+                scanf("%d", &opcao_secundaria);
 
-               char aux[15];
+                char aux[15];
 
-               switch (opcao_secundaria)
-               {
-                case 1: //CADASTRAR CLIENTES
-                lista_clientes = cadastrar_cliente(lista_clientes);
-                break;
+                switch (opcao_secundaria)
+                {
+                case 1: // CADASTRAR CLIENTES
+                    lista_clientes = cadastrar_cliente(lista_clientes);
+                    break;
 
-                case 2: //LISTAR TODOS OS CLIENTES
-                listar_clientes(lista_clientes);
-                //break;
+                case 2: // LISTAR TODOS OS CLIENTES
+                    listar_clientes(lista_clientes);
+                    // break;
 
-                case 3: //BUSCAR CLIENTE
-                
+                case 3: // BUSCAR CLIENTE
+
                 default:
                     printf("Opcao invalida.\n");
                     break;
-               }
-
+                }
 
             } while (opcao_secundaria != 0);
-            
+
             break;
-        
-    
+
         case 2:
-            /* code */
+            do
+            {
+                cria_menu_produtos();
+                scanf("%d", &opcao_secundaria);
+
+                switch (opcao_secundaria)
+                {
+                case 1: // Cadastrar produto
+                    // codigo aqui
+                    break;
+                case 2: // Listar produto
+                    // codigo aqui
+                    break;
+                case 3: // Buscar produto
+                    // codigo aqui
+                    break;
+                case 4: // Editar produto
+                    // codigo aqui
+                    break;
+                case 5: // Remover produto
+                    // codigo aqui
+                    break;
+
+                default:
+                    printf("Opcao invalida.\n");
+                    break;
+                }
+            } while (opcao_secundaria != 0);
+
             break;
 
         case 3:
-        
-                cria_menu_modo_compra();
-                cliente* cliente_comprador = escolhe_cliente_comprador(lista_clientes);
 
-                if (cliente_comprador == NULL) {
-                    break;
-                } 
+            cria_menu_modo_compra();
+            cliente *cliente_comprador = escolhe_cliente_comprador(lista_clientes);
+
+            if (cliente_comprador == NULL)
+            {
+                break;
+            }
 
             do
-            {   
+            {
                 cria_menu_carrinho(cliente_comprador);
                 scanf("%d", &opcao_secundaria);
 
                 switch (opcao_secundaria)
                 {
                 case 1:
-                    
+
                     break;
-                
+
                 case 2:
 
                     break;
@@ -141,7 +175,7 @@ int main(){
             printf("Opcao invalida.\n");
             break;
         }
-    } while(opcao_principal != 0);
+    } while (opcao_principal != 0);
 
     return 0;
 }
