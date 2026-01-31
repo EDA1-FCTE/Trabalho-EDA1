@@ -1,9 +1,3 @@
-/* **************************************************************************
-*
-*
-*
-*************************************************************************** */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -57,7 +51,6 @@ void cria_menu_carrinho(cliente* referencia){
 int main(){
 
     cliente* lista_clientes = cria_lista_clientes();
-    produto* lista_produtos = cria_lista_produtos();
 
     int opcao_principal, opcao_secundaria;
 
@@ -73,20 +66,44 @@ int main(){
                cria_menu_clientes();
                scanf("%d", &opcao_secundaria);
 
-               char aux[15];
+               char cpf_temporario[15];
+               cliente* resultado_busca;
 
                switch (opcao_secundaria)
                {
                 case 1: //CADASTRAR CLIENTES
-                lista_clientes = cadastrar_cliente(lista_clientes);
+                cadastrar_cliente(lista_clientes);
                 break;
 
                 case 2: //LISTAR TODOS OS CLIENTES
                 listar_clientes(lista_clientes);
-                //break;
 
                 case 3: //BUSCAR CLIENTE
-                
+
+                printf("Digite o CPF para buscar: \n");
+                scanf (" %[^\n]", cpf_temporario);
+                resultado_busca = buscar_clientes(lista_clientes->prox, cpf_temporario);
+
+                if(resultado_busca != NULL){
+                    printf("\n === Resultado da busca: ===\n");
+                    printf("Nome do cliente: %s \n", resultado_busca->nome);
+                    printf("Email: %s \n", resultado_busca->email);
+                    printf("Telefone: %s\n", resultado_busca->telefone);
+                    printf("Data de Nascimento: %s \n", resultado_busca->data_de_nascimento);
+                }
+                else printf("\n === Cliente nao encontrado. ===\n");
+                break;
+
+                case 4: //EDITAR CLIENTE
+                break;
+
+                case 5: //DELETAR CLIENTE
+                printf("Digite o CPF do cliente que deseja deletar: \n");
+                scanf(" %[^\n]", cpf_temporario);
+                deletar_cliente(lista_clientes, cpf_temporario);
+                break;
+
+
                 default:
                     printf("Opcao invalida.\n");
                     break;

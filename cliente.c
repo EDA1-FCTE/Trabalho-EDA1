@@ -6,16 +6,19 @@
 #include "produto.h"
 
 cliente* cria_lista_clientes(){
-    return NULL;
+    cliente *head;
+    head = malloc(sizeof(cliente));
+    head->prox = NULL;
+    return head;
 }
 
-cliente* cadastrar_cliente(cliente* head){
+void cadastrar_cliente(cliente* head){
     cliente* novo_cliente = (cliente*) malloc(sizeof (cliente));
     int validaCPF = 0;
 
     if (novo_cliente == NULL){
-        printf("Não foi possível alocar memória.\n");
-        return head;
+        printf("Nao foi possível alocar memoria.\n");
+        return;
     }
 
     printf("\n=== Cadastro Novo ===\n");
@@ -49,7 +52,7 @@ cliente* cadastrar_cliente(cliente* head){
     }
     }
 
-    printf("Digite o nome (Máximo de 100 caracteres):\n");
+    printf("Digite o nome (Maximo de 100 caracteres):\n");
     scanf(" %[^\n]", novo_cliente->nome);
 
     printf("Digite o e-mail:\n");
@@ -61,20 +64,28 @@ cliente* cadastrar_cliente(cliente* head){
     printf("Digite a data de nascimento (dd/mm/aaaa):\n");
     scanf(" %[^\n]", novo_cliente->data_de_nascimento);
 
-    novo_cliente->prox = head;
+    novo_cliente->carrinho_do_cliente = NULL;
+
+    novo_cliente->prox = head->prox;
+
+    head->prox = novo_cliente; //Sempre coloca o novo cliente no inicio da lista.
 
     printf("Cadastro finalizado!\n");
 
-    return novo_cliente;
 }
 
 void listar_clientes(cliente* head){
-    cliente* cliente_atual = head;
+    cliente* cliente_atual = head->prox;
 
-    if(cliente_atual != NULL){
+    printf("\n=== LISTA DE CLIENTES ===\n");
+
+    while (cliente_atual != NULL){
+
         printf("Nome: %s | CPF: %s \n", cliente_atual->nome, cliente_atual->CPF);
-        listar_clientes(cliente_atual->prox);
+        
+        cliente_atual= cliente_atual->prox;
     }
+    printf("========================\n");
 
 }
 
@@ -90,6 +101,42 @@ cliente* buscar_clientes(cliente* head, char* cpf_desejado){
     return buscar_clientes(cliente_atual->prox, cpf_desejado);
 }
 
+void deletar_items_carrinho(item_carrinho* item){
+
+    while (item != NULL){
+        item_carrinho* temporario = item;
+        item = item->prox;
+        free(temporario);
+    }
+}
+
+void deletar_cliente(cliente* head, char* cpf_para_deletar){
+    cliente* cliente_anterior;
+    cliente* cliente_atual;
+    cliente_anterior = head;
+    cliente_atual = head->prox;
+
+    while (cliente_atual != NULL){
+
+        if (strcmp(cliente_atual->CPF,cpf_para_deletar) == 0){
+
+            cliente_anterior->prox = cliente_atual -> prox;
+
+            deletar_items_carrinho(cliente_atual->carrinho_do_cliente);
+
+            free(cliente_atual);
+            
+            printf("Cliente %s e seu carrinho deletado com sucesso!\n", cpf_para_deletar);
+            
+            return;
+        }
+
+        cliente_anterior = cliente_atual;
+        cliente_atual = cliente_atual->prox;
+
+    }
+    printf("Cliente nao encontrado.\n");
+}
 
 cliente* escolhe_cliente_comprador(cliente* head){
     

@@ -44,7 +44,7 @@ typedef struct cliente
 
 } cliente;
 
-cliente* cadastrar_cliente (cliente* head);
+void cadastrar_cliente (cliente* head);
 
 cliente* cria_lista_clientes();
 
@@ -52,7 +52,12 @@ void listar_clientes(cliente* head);
 
 cliente* buscar_clientes(cliente* head, char* cpf_desejado);
 
-cliente* escolhe_cliente_comprador(cliente* head);
-
 void adicionar_ao_carrinho(cliente* cliente_comprador, struct produto* produto_desejado, int quantidade);
+cliente* editar_cliente(cliente* head, char* cpf_para_alterar);
+
+void deletar_cliente(cliente* head, char* cpf_para_deletar);
+
+void deletar_items_carrinho(item_carrinho* item);
+
+cliente* escolhe_cliente_comprador(cliente* head);
 #endif
