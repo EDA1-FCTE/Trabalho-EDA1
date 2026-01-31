@@ -52,6 +52,7 @@ void listar_clientes(cliente* head);
 
 cliente* buscar_clientes(cliente* head, char* cpf_desejado);
 
+void adicionar_ao_carrinho(cliente* cliente_comprador, struct produto* produto_desejado, int quantidade);
 cliente* editar_cliente(cliente* head, char* cpf_para_alterar);
 
 void deletar_cliente(cliente* head, char* cpf_para_deletar);

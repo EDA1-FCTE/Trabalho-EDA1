@@ -153,3 +153,47 @@ cliente* escolhe_cliente_comprador(cliente* head){
 
     return cliente_encontrado;
 }
+
+
+void adicionar_ao_carrinho(cliente* cliente_comprador, produto* produto_desejado, int quantidade_desejada){
+
+    if(produto_desejado == NULL){
+        printf("\nProduto nao encontrado\n");
+        return;
+    }
+
+    if(produto_desejado->quantidade < quantidade_desejada){
+        printf("\nExistem apenas %d %s disponiveis no estoque", produto_desejado->quantidade, produto_desejado->nome);
+        return;
+    }
+
+    if(quantidade_desejada <= 0){
+        printf("\nSelecione pelo menos 1 unidade do produto");
+        return;
+    }
+
+    item_carrinho* item_desejado = (item_carrinho*) calloc(1, sizeof(item_carrinho));
+    if(item_desejado == NULL){
+        printf("\nErro ao alocar memoria\n");
+        return;
+    }
+
+    item_desejado->codigo_produto = produto_desejado->codigo;
+    strcpy(item_desejado->nome , produto_desejado->nome);
+    item_desejado->preco = produto_desejado->preco;
+    item_desejado->quantidade = quantidade_desejada;
+
+    if(cliente_comprador->carrinho_do_cliente == NULL){
+        cliente_comprador->carrinho_do_cliente = item_desejado;
+    } else{
+        item_carrinho* temp = cliente_comprador->carrinho_do_cliente;
+        while (temp->prox != NULL)
+        {
+            temp = temp->prox;
+        }
+        temp->prox = item_desejado;
+    }
+
+    produto_desejado->quantidade -= quantidade_desejada; //subtrai a quantidade comprada do estoque
+    printf("\nProduto %s | %d unidade(s) | adicionado ao carrinho com sucesso\n", item_desejado->nome, quantidade_desejada);
+}
