@@ -17,7 +17,7 @@ void cadastrar_cliente(cliente* head){
     int validaCPF = 0;
 
     if (novo_cliente == NULL){
-        printf("Não foi possível alocar memória.\n");
+        printf("Nao foi possível alocar memoria.\n");
         return;
     }
 
@@ -52,7 +52,7 @@ void cadastrar_cliente(cliente* head){
     }
     }
 
-    printf("Digite o nome (Máximo de 100 caracteres):\n");
+    printf("Digite o nome (Maximo de 100 caracteres):\n");
     scanf(" %[^\n]", novo_cliente->nome);
 
     printf("Digite o e-mail:\n");
@@ -99,6 +99,43 @@ cliente* buscar_clientes(cliente* head, char* cpf_desejado){
         return cliente_atual;
     }
     return buscar_clientes(cliente_atual->prox, cpf_desejado);
+}
+
+void deletar_items_carrinho(item_carrinho* item){
+
+    while (item != NULL){
+        item_carrinho* temporario = item;
+        item = item->prox;
+        free(temporario);
+    }
+}
+
+void deletar_cliente(cliente* head, char* cpf_para_deletar){
+    cliente* cliente_anterior;
+    cliente* cliente_atual;
+    cliente_anterior = head;
+    cliente_atual = head->prox;
+
+    while (cliente_atual != NULL){
+
+        if (strcmp(cliente_atual->CPF,cpf_para_deletar) == 0){
+
+            cliente_anterior->prox = cliente_atual -> prox;
+
+            deletar_items_carrinho(cliente_atual->carrinho_do_cliente);
+
+            free(cliente_atual);
+            
+            printf("Cliente %s e seu carrinho deletado com sucesso!\n", cpf_para_deletar);
+            
+            return;
+        }
+
+        cliente_anterior = cliente_atual;
+        cliente_atual = cliente_atual->prox;
+
+    }
+    printf("Cliente nao encontrado.\n");
 }
 
 
