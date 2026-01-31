@@ -26,7 +26,7 @@ produto* cadastrar_produto(produto* head){
     scanf(" %[^\n]", novo_produto->nome);
 
     printf("Digite o preco do produto: \n");
-    scanf(" %.2f", &novo_produto->preco);
+    scanf(" %f", &novo_produto->preco);
 
     printf("Digite a quantidade: \n");
     scanf("%d", &novo_produto->quantidade);
