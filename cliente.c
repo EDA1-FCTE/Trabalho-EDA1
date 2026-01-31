@@ -82,14 +82,27 @@ cliente* buscar_clientes(cliente* head, char* cpf_desejado){
     cliente* cliente_atual = head;
     
     if (cliente_atual == NULL){
-        return NULL;
+        return NULL; //se está vazia desde o começo
     }
     if (strcmp(cliente_atual->CPF, cpf_desejado) == 0){
-        return cliente_atual;
+        return cliente_atual; //achou o cpf desejado
     }
     return buscar_clientes(cliente_atual->prox, cpf_desejado);
 }
 
-/* int main(){
+
+cliente* escolhe_cliente_comprador(cliente* listar_clientes){
     
-} */
+    char cpf_comprador[15];
+    
+    printf("Digite o CPF do cliente comprador: ");
+    scanf(" %[^\n]", cpf_comprador);
+
+    cliente* cliente_encontrado = buscar_clientes(listar_clientes, cpf_comprador);
+
+    if(cliente_encontrado == NULL){
+        printf("\nCliente nao encontrado\n");
+    }
+
+    return cliente_encontrado;
+}
