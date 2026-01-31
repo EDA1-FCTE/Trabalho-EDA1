@@ -108,15 +108,15 @@ cliente* escolhe_cliente_comprador(cliente* head){
 }
 
 
-void adicionar_ao_carrinho(cliente* head, produto* phead, int quantidade_desejada){
+void adicionar_ao_carrinho(cliente* cliente_comprador, produto* produto_desejado, int quantidade_desejada){
 
-    if(phead == NULL){
+    if(produto_desejado == NULL){
         printf("\nProduto nao encontrado\n");
         return;
     }
 
-    if(phead->quantidade < quantidade_desejada){
-        printf("\nExistem apenas %d %s disponiveis no estoque", phead->quantidade, phead->nome);
+    if(produto_desejado->quantidade < quantidade_desejada){
+        printf("\nExistem apenas %d %s disponiveis no estoque", produto_desejado->quantidade, produto_desejado->nome);
         return;
     }
 
@@ -131,15 +131,15 @@ void adicionar_ao_carrinho(cliente* head, produto* phead, int quantidade_desejad
         return;
     }
 
-    item_desejado->codigo_produto = phead->codigo;
-    strcpy(item_desejado->nome , phead->nome);
-    item_desejado->preco = phead->preco;
+    item_desejado->codigo_produto = produto_desejado->codigo;
+    strcpy(item_desejado->nome , produto_desejado->nome);
+    item_desejado->preco = produto_desejado->preco;
     item_desejado->quantidade = quantidade_desejada;
 
-    if(head->carrinho_do_cliente == NULL){
-        head->carrinho_do_cliente = item_desejado;
+    if(cliente_comprador->carrinho_do_cliente == NULL){
+        cliente_comprador->carrinho_do_cliente = item_desejado;
     } else{
-        item_carrinho* temp = head->carrinho_do_cliente;
+        item_carrinho* temp = cliente_comprador->carrinho_do_cliente;
         while (temp->prox != NULL)
         {
             temp = temp->prox;
@@ -147,6 +147,6 @@ void adicionar_ao_carrinho(cliente* head, produto* phead, int quantidade_desejad
         temp->prox = item_desejado;
     }
 
-    phead->quantidade -= quantidade_desejada; //subtrai a quantidade comprada do estoque
-    printf("\nProduto %s | %d unidade(s) | adicionado ao carrinho com sucesso", item_desejado->nome, quantidade_desejada);
+    produto_desejado->quantidade -= quantidade_desejada; //subtrai a quantidade comprada do estoque
+    printf("\nProduto %s | %d unidade(s) | adicionado ao carrinho com sucesso\n", item_desejado->nome, quantidade_desejada);
 }

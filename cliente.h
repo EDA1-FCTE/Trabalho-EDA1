@@ -54,5 +54,5 @@ cliente* buscar_clientes(cliente* head, char* cpf_desejado);
 
 cliente* escolhe_cliente_comprador(cliente* head);
 
-void adicionar_ao_carrinho(cliente* head, struct produto* phead, int quantidade);
+void adicionar_ao_carrinho(cliente* cliente_comprador, struct produto* produto_desejado, int quantidade);
 #endif
