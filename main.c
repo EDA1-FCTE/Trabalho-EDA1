@@ -95,6 +95,10 @@ int main(){
                 break;
 
                 case 4: //EDITAR CLIENTE
+                printf("\n === EDIÇÃO DE CLIENTE === \n");
+                printf("Digite o CPF do cliente que deseja editar: \n");
+                scanf(" %[^\n]", cpf_temporario);
+                editar_cliente(lista_clientes, cpf_temporario);
                 break;
 
                 case 5: //DELETAR CLIENTE
@@ -102,7 +106,6 @@ int main(){
                 scanf(" %[^\n]", cpf_temporario);
                 deletar_cliente(lista_clientes, cpf_temporario);
                 break;
-
 
                 default:
                     printf("Opcao invalida.\n");
@@ -160,5 +163,8 @@ int main(){
         }
     } while(opcao_principal != 0);
 
+    printf("Encerrando sistema e liberando memoria\n");
+    free_clientes(lista_clientes);
+    //colocar a funcao de liberar a lista de produtos aqui
     return 0;
 }
