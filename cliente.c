@@ -154,7 +154,7 @@ void editar_cliente(cliente* head, char* cpf_para_editar){
             int opcao;
 
             do{
-                printf("\n === EDITANDO DE CLIENTE === \n");
+                printf("\n === EDITANDO CLIENTE === \n");
                 printf("(1)Nome: %s\n", cliente_atual->nome);
                 printf("(2)Email: %s\n",cliente_atual->email);
                 printf("(3)Telefone: %s\n",cliente_atual->telefone);

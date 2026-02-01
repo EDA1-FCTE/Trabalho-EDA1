@@ -77,6 +77,7 @@ int main(){
 
                 case 2: //LISTAR TODOS OS CLIENTES
                 listar_clientes(lista_clientes);
+                break;
 
                 case 3: //BUSCAR CLIENTE
 
@@ -95,7 +96,7 @@ int main(){
                 break;
 
                 case 4: //EDITAR CLIENTE
-                printf("\n === EDIÇÃO DE CLIENTE === \n");
+                printf("\n === EDICAO DE CLIENTE === \n");
                 printf("Digite o CPF do cliente que deseja editar: \n");
                 scanf(" %[^\n]", cpf_temporario);
                 editar_cliente(lista_clientes, cpf_temporario);
