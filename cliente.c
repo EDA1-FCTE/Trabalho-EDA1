@@ -8,7 +8,14 @@
 cliente* cria_lista_clientes(){
     cliente *head;
     head = malloc(sizeof(cliente));
-    head->prox = NULL;
+
+    if(head != NULL){
+        head->prox = NULL;
+        head->carrinho_do_cliente = NULL;
+    } else {
+        printf("ERRO na alocacao de memoria!\n");
+        exit(1);
+    }
     return head;
 }
 
@@ -136,6 +143,77 @@ void deletar_cliente(cliente* head, char* cpf_para_deletar){
 
     }
     printf("Cliente nao encontrado.\n");
+}
+
+void editar_cliente(cliente* head, char* cpf_para_editar){
+    cliente* cliente_atual = head->prox;
+
+    while(cliente_atual != NULL){
+        if (strcmp(cliente_atual->CPF, cpf_para_editar) == 0){
+
+            int opcao;
+
+            do{
+                printf("\n === EDITANDO CLIENTE === \n");
+                printf("(1)Nome: %s\n", cliente_atual->nome);
+                printf("(2)Email: %s\n",cliente_atual->email);
+                printf("(3)Telefone: %s\n",cliente_atual->telefone);
+                printf("(4)Data de nascimento: %s\n",cliente_atual->data_de_nascimento);
+                printf("(0)Salvar e sair \n");
+                printf("Digite o numero da opcao referente ao campo que deseja alterar. \n");
+                scanf(" %d", &opcao);
+
+                switch (opcao)
+                {
+                case 1:
+                    printf("Novo nome: \n");
+                    scanf(" %[^\n]", cliente_atual->nome);
+                    break;
+
+                case 2:
+                    printf("Novo email: \n");
+                    scanf(" %[^\n]", cliente_atual->email);
+                    break;
+
+                case 3:
+                    printf("Novo telefone: \n");
+                    scanf(" %[^\n]", cliente_atual->telefone);
+                    break;
+
+                case 4:
+                    printf("Nova data de nascimento(dd/mm/aaa): \n");
+                    scanf(" %[^\n]", cliente_atual->data_de_nascimento);
+                    break;
+                case 0:
+                    printf("Dados alterados com sucesso!\n");
+                    break;
+
+                default:
+                    printf("Operacao invalida.\n");
+                    break;
+                }
+            } while (opcao != 0);
+
+            return;
+        }
+
+        cliente_atual= cliente_atual->prox;
+    }
+
+    printf("CPF %s nao encontrado.\n", cpf_para_editar);
+
+}
+
+void* free_clientes(cliente* head){
+    cliente* cliente_atual = head;
+    cliente* prox_cliente;
+    while (cliente_atual != NULL)
+    {
+        prox_cliente= cliente_atual->prox;
+        deletar_items_carrinho(cliente_atual->carrinho_do_cliente);
+        free(cliente_atual);
+        cliente_atual = prox_cliente;
+    }
 }
 
 cliente* escolhe_cliente_comprador(cliente* head){
