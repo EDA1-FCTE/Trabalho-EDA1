@@ -60,4 +60,6 @@ void deletar_cliente(cliente* head, char* cpf_para_deletar);
 void deletar_items_carrinho(item_carrinho* item);
 
 cliente* escolhe_cliente_comprador(cliente* head);
+
+void listar_carrinho(cliente* head);
 #endif
