@@ -58,3 +58,8 @@ produto* buscar_produto(produto* head, int codigo){
     }
     return NULL;
 }
+
+
+//editar
+
+//remover

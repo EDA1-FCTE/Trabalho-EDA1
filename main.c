@@ -103,7 +103,7 @@ int main()
 
             break;
 
-        case 2:
+        case 2: // GERENCIAR PRODUTOS CADASTRADOS
             do
             {
                 cria_menu_produtos();
@@ -112,10 +112,10 @@ int main()
                 switch (opcao_secundaria)
                 {
                 case 1: // Cadastrar produto
-                    // codigo aqui
-                    break;
-                case 2: // Listar produto
-                    // codigo aqui
+                    lista_produtos = cadastrar_produto(lista_produtos);
+                    break;                    
+                case 2: // Listar todos os produtos
+                    listar_produtos(lista_produtos);
                     break;
                 case 3: // Buscar produto
                     // codigo aqui
