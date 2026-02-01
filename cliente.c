@@ -197,3 +197,29 @@ void adicionar_ao_carrinho(cliente* cliente_comprador, produto* produto_desejado
     produto_desejado->quantidade -= quantidade_desejada; //subtrai a quantidade comprada do estoque
     printf("\nProduto %s | %d unidade(s) | adicionado ao carrinho com sucesso\n", item_desejado->nome, quantidade_desejada);
 }
+
+void listar_carrinho(cliente* cliente_comprador){
+
+    item_carrinho* temp = cliente_comprador->carrinho_do_cliente;
+    float preco_total = 0;
+
+    printf("\n=== PRODUTOS NO CARRINHO DE %s ===\n", cliente_comprador->nome);
+
+    if(temp == NULL){
+        printf("\nNao ha produtos no carrinho\n");
+        return;
+    } 
+
+    while(temp != NULL){
+        printf("\ncod: %d | %s | qtd: %d | total: %.2f\n", temp->codigo_produto, temp->nome,
+                                                           temp->quantidade, (temp->preco * temp->quantidade));
+        preco_total += (temp->preco * temp->quantidade);
+        temp = temp->prox;
+        }
+
+    printf("\n========= TOTAL: R$%.2f =========\n", preco_total);
+    
+
+
+
+}
