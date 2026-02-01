@@ -145,7 +145,7 @@ void deletar_cliente(cliente* head, char* cpf_para_deletar){
     printf("Cliente nao encontrado.\n");
 }
 
-void* editar_cliente(cliente* head, char* cpf_para_editar){
+void editar_cliente(cliente* head, char* cpf_para_editar){
     cliente* cliente_atual = head->prox;
 
     while(cliente_atual != NULL){
@@ -185,7 +185,7 @@ void* editar_cliente(cliente* head, char* cpf_para_editar){
                     scanf(" %[^\n]", cliente_atual->data_de_nascimento);
                     break;
                 case 0:
-                    prinf("Dados alterados com sucesso!\n");
+                    printf("Dados alterados com sucesso!\n");
                     break;
 
                 default:

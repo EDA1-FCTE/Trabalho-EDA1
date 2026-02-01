@@ -52,7 +52,7 @@ void listar_clientes(cliente* head);
 
 cliente* buscar_clientes(cliente* head, char* cpf_desejado);
 
-void* editar_cliente(cliente* head, char* cpf_para_alterar);
+void editar_cliente(cliente* head, char* cpf_para_alterar);
 
 void deletar_cliente(cliente* head, char* cpf_para_deletar);
 
