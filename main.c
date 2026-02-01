@@ -78,6 +78,7 @@ int main(){
 
                 case 2: //LISTAR TODOS OS CLIENTES
                 listar_clientes(lista_clientes);
+                break;
 
                 case 3: //BUSCAR CLIENTE
 
@@ -96,6 +97,10 @@ int main(){
                 break;
 
                 case 4: //EDITAR CLIENTE
+                printf("\n === EDICAO DE CLIENTE === \n");
+                printf("Digite o CPF do cliente que deseja editar: \n");
+                scanf(" %[^\n]", cpf_temporario);
+                editar_cliente(lista_clientes, cpf_temporario);
                 break;
 
                 case 5: //DELETAR CLIENTE
@@ -103,7 +108,6 @@ int main(){
                 scanf(" %[^\n]", cpf_temporario);
                 deletar_cliente(lista_clientes, cpf_temporario);
                 break;
-
 
                 default:
                     printf("Opcao invalida.\n");
@@ -117,7 +121,34 @@ int main(){
         
     
         case 2:
-            /* code */
+            do
+            {
+                cria_menu_produtos();
+                scanf("%d", &opcao_secundaria);
+
+                switch (opcao_secundaria)
+                {
+                case 1: // Cadastrar produto
+                    lista_produtos = cadastrar_produto(lista_produtos);
+                    break;                    
+                case 2: // Listar todos os produtos
+                    listar_produtos(lista_produtos);
+                    break;
+                case 3: // Buscar produto
+                    // codigo aqui
+                    break;
+                case 4: // Editar produto
+                    // codigo aqui
+                    break;
+                case 5: // Remover produto
+                    // codigo aqui
+                    break;
+
+                default:
+                    printf("Opcao invalida.\n");
+                    break;
+                }
+            } while (opcao_secundaria != 0);
             break;
 
         case 3: //modo compra
@@ -179,5 +210,8 @@ int main(){
         }
     } while(opcao_principal != 0);
 
+    printf("Encerrando sistema e liberando memoria\n");
+    free_clientes(lista_clientes);
+    //colocar a funcao de liberar a lista de produtos aqui
     return 0;
 }
