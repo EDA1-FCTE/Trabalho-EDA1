@@ -9,9 +9,16 @@ produto* cria_lista_produtos(){
 }
 
 produto* cadastrar_produto(produto* head){
-
+     int codigo;
     produto* novo_produto = (produto*) malloc(sizeof (produto));
     
+    // Verifica se o produto já existe
+    if (buscar_produto(head, codigo) != NULL) 
+    {
+        printf("Erro: Ja existe um produto com este codigo.\n");
+        return head;
+    }
+
     if(novo_produto == NULL){
         printf("Nao foi possivel alocar memoria!\n");
         return head;
