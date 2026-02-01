@@ -142,6 +142,11 @@ int main(){
                     scanf("%d", &codigo_produto);
                     produto* produto_desejado = buscar_produto(lista_produtos, codigo_produto);
 
+                    if(produto_desejado == NULL){
+                        printf("\nProduto nao encontrado\n");
+                        break;
+                    }
+
                     printf("\nDigite a quantidade de %s: ", produto_desejado->nome);
                     int quantidade_produto;
                     scanf("%d", &quantidade_produto);
