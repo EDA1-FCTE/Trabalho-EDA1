@@ -173,7 +173,10 @@ int main()
                     editar_produto(lista_produtos, codigo_editar);
                     break;
                 case 5: // Remover produto
-                    // codigo aqui
+                    int codigo_remover;
+                    printf("\nDigite o codigo do produto a remover: ");
+                    scanf("%d", &codigo_remover);
+                    lista_produtos = remover_produto(lista_produtos, codigo_remover);
                     break;
 
                 default:
