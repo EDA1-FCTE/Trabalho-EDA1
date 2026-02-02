@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -119,4 +120,14 @@ produto* remover_produto(produto* head, int codigo)
     }
     printf("Produto nao encontrado.\n");
     return head;
+    }
+    void liberar_lista_produtos(produto* head) 
+    {
+        produto* atual = head;
+        while (atual != NULL) 
+        {
+            produto* temp = atual;
+            atual = atual->prox;
+            free(temp);
+        }
 }
