@@ -65,4 +65,6 @@ void* free_clientes(cliente* head);
 cliente* escolhe_cliente_comprador(cliente* head);
 
 void listar_carrinho(cliente* head);
+
+void remove_item_carrinho(cliente* head, int codigo_item, struct produto* lista_produtos);
 #endif

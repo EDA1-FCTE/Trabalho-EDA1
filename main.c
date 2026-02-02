@@ -81,18 +81,6 @@ int main()
 
                 char aux[15];
 
-                switch (opcao_secundaria)
-                {
-                case 1: // CADASTRAR CLIENTES
-                    lista_clientes = cadastrar_cliente(lista_clientes);
-                    break;
-
-                case 2: // LISTAR TODOS OS CLIENTES
-                    listar_clientes(lista_clientes);
-                    // break;
-
-                case 3: // BUSCAR CLIENTE
-
                char cpf_temporario[15];
                cliente* resultado_busca;
 
@@ -176,9 +164,6 @@ int main()
             break;
 
         case 3: //modo compra
-        
-                cria_menu_modo_compra();
-                cliente* cliente_comprador = escolhe_cliente_comprador(lista_clientes);
 
             cria_menu_modo_compra();
             cliente *cliente_comprador = escolhe_cliente_comprador(lista_clientes);

@@ -297,7 +297,35 @@ void listar_carrinho(cliente* cliente_comprador){
 
     printf("\n========= TOTAL: R$%.2f =========\n", preco_total);
     
+    }
 
-
-
+void remove_item_carrinho(cliente* head, int codigo_item, produto* lista_produtos){
+    
+    item_carrinho* temporario = head->carrinho_do_cliente;
+    item_carrinho* anterior = NULL;
+    
+    while(temporario != NULL){
+        if(temporario->codigo_produto == codigo_item){
+            if(anterior == NULL){
+                head->carrinho_do_cliente = temporario->prox;
+            } else {
+                anterior->prox = temporario->prox;
+            }
+            
+            produto* prod = buscar_produto(lista_produtos, codigo_item);
+            if(prod != NULL){
+                prod->quantidade += temporario->quantidade;
+            }
+            
+            free(temporario);
+            printf("\nO Produto foi removido do carrinho\n");
+            return;
+        }
+        
+        anterior = temporario;
+        temporario = temporario->prox;
+    }
+    
+    printf("\nProduto nao encontrado no carrinho\n");
 }
+
