@@ -167,7 +167,10 @@ int main()
                     }
                     break;
                 case 4: // Editar produto
-                    // codigo aqui
+                    int codigo_editar;
+                    printf("\nDigite o codigo do produto a editar: ");
+                    scanf("%d", &codigo_editar);
+                    editar_produto(lista_produtos, codigo_editar);
                     break;
                 case 5: // Remover produto
                     // codigo aqui
