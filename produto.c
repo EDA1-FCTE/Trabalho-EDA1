@@ -8,18 +8,11 @@ produto* cria_lista_produtos(){
     return NULL;
 }
 
-produto* cadastrar_produto(produto* head){
+produto* cadastrar_produto(produto* head)
+{
     int codigo;
-    produto* novo_produto = (produto*) malloc(sizeof (produto));
-    
-    // Verifica se o produto já existe
-    if (buscar_produto(head, codigo) != NULL) 
-    {
-        printf("Erro: Ja existe um produto com este codigo.\n");
-        return head;
-    }
-    produto* novo_produto = (produto*) malloc(sizeof (produto));
-    
+    produto* novo_produto = (produto*) malloc(sizeof(produto));
+
     if(novo_produto == NULL){
         printf("Nao foi possivel alocar memoria!\n");
         return head;
@@ -28,13 +21,23 @@ produto* cadastrar_produto(produto* head){
     printf("\n=== Cadastro de Novo Produto ===\n");
 
     printf("Digite o codigo do produto(Apenas numeros):\n");
-    scanf("%d", &novo_produto->codigo);
+    scanf("%d", &codigo);
+
+    // Verifica se o produto já existe
+    if (buscar_produto(head, codigo) != NULL)
+    {
+        printf("Erro: Ja existe um produto com este codigo.\n");
+        free(novo_produto);
+        return head;
+    }
+
+    novo_produto->codigo = codigo;
 
     printf("Digite o nome do produto: \n");
     scanf(" %[^\n]", novo_produto->nome);
 
     printf("Digite o preco do produto: \n");
-    scanf(" %.2f", &novo_produto->preco);
+    scanf(" %f", &novo_produto->preco);
 
     printf("Digite a quantidade: \n");
     scanf("%d", &novo_produto->quantidade);
@@ -45,6 +48,7 @@ produto* cadastrar_produto(produto* head){
 
     return novo_produto;
 }
+
 
 void listar_produtos(produto* head){
     produto* produto_atual = head;
@@ -66,3 +70,7 @@ produto* buscar_produto(produto* head, int codigo){
     }
     return NULL;
 }
+
+//editar
+
+//remover
