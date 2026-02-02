@@ -57,7 +57,6 @@ void listar_produtos(produto* head){
         printf("Nenhum produto cadastrado.\n");
         return;
     }
-
     while (produto_atual != NULL) {
         printf("Nome: %s | Codigo: %d | Preco: R$: %.2f | Quantidade: %d\n",
                produto_atual->nome, produto_atual->codigo, produto_atual->preco, produto_atual->quantidade);
@@ -77,6 +76,20 @@ produto* buscar_produto(produto* head, int codigo){
     return NULL;
 }
 
-//editar
+void editar_produto(produto* head, int codigo) {
+    produto* p = buscar_produto(head, codigo);
+    if (p == NULL) {
+        printf("Produto nao encontrado.\n");
+        return;
+    }
+    printf("Editando produto: %s\n", p->nome);
+    printf("Novo nome (atual: %s): ", p->nome);
+    scanf(" %[^\n]", p->nome);
+    printf("Novo preco (atual: %.2f): ", p->preco);
+    scanf("%f", &p->preco);
+    printf("Nova quantidade (atual: %d): ", p->quantidade);
+    scanf("%d", &p->quantidade);
+    printf("Produto atualizado com sucesso!\n");
+}
 
 //remover
