@@ -53,9 +53,15 @@ produto* cadastrar_produto(produto* head)
 void listar_produtos(produto* head){
     produto* produto_atual = head;
 
-    if (produto_atual != NULL){
-        printf("Nome: %s | Codigo: %d | Preco: R$: %.2f \n", produto_atual->nome, produto_atual->codigo, produto_atual->preco);
-        listar_produtos(produto_atual-> prox);
+    if (produto_atual == NULL) {
+        printf("Nenhum produto cadastrado.\n");
+        return;
+    }
+
+    while (produto_atual != NULL) {
+        printf("Nome: %s | Codigo: %d | Preco: R$: %.2f | Quantidade: %d\n",
+               produto_atual->nome, produto_atual->codigo, produto_atual->preco, produto_atual->quantidade);
+        produto_atual = produto_atual->prox;
     }
 }
 
