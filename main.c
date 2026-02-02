@@ -1,8 +1,3 @@
-/* **************************************************************************
- *
- *
- *
- *************************************************************************** */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -230,6 +225,11 @@ int main()
                     break;
 
                 case 3:
+                    int codigo_produto_remover;
+                    printf("\nDigite o codigo do produto a ser removido do carrinho: ");
+                    scanf("%d", &codigo_produto_remover);
+
+                    remove_item_carrinho(cliente_comprador, codigo_produto_remover, lista_produtos);
 
                     break;
                 }
@@ -248,6 +248,6 @@ int main()
 
     printf("Encerrando sistema e liberando memoria\n");
     free_clientes(lista_clientes);
-    //colocar a funcao de liberar a lista de produtos aqui
+    liberar_lista_produtos(lista_produtos);
     return 0;
 }
