@@ -64,22 +64,6 @@ int main()
     cliente *lista_clientes = cria_lista_clientes();
     produto *lista_produtos = cria_lista_produtos();
 
-    produto* p1 = (produto*) malloc(sizeof(produto));
-    strcpy(p1->nome, "Mouse");
-    p1->codigo = 1;
-    p1->preco = 50.0f;
-    p1->quantidade = 10;
-    p1->prox = NULL;
-    lista_produtos = p1;
-
-    produto* p2 = (produto*) malloc(sizeof(produto));
-    strcpy(p2->nome, "Teclado");
-    p2->codigo = 2;
-    p2->preco = 120.0f;
-    p2->quantidade = 5;
-    p2->prox = lista_produtos;
-    lista_produtos = p2;
-
     int opcao_principal, opcao_secundaria;
 
     do
@@ -96,18 +80,6 @@ int main()
                 scanf("%d", &opcao_secundaria);
 
                 char aux[15];
-
-                switch (opcao_secundaria)
-                {
-                case 1: // CADASTRAR CLIENTES
-                    lista_clientes = cadastrar_cliente(lista_clientes);
-                    break;
-
-                case 2: // LISTAR TODOS OS CLIENTES
-                    listar_clientes(lista_clientes);
-                    // break;
-
-                case 3: // BUSCAR CLIENTE
 
                char cpf_temporario[15];
                cliente* resultado_busca;
@@ -192,9 +164,6 @@ int main()
             break;
 
         case 3: //modo compra
-        
-                cria_menu_modo_compra();
-                cliente* cliente_comprador = escolhe_cliente_comprador(lista_clientes);
 
             cria_menu_modo_compra();
             cliente *cliente_comprador = escolhe_cliente_comprador(lista_clientes);
@@ -238,12 +207,6 @@ int main()
                     break;
 
                 case 3:
-
-                    int codigo_produto_remover;
-                    printf("\nDigite o codigo do produto a ser removido do carrinho: ");
-                    scanf("%d", &codigo_produto_remover);
-
-                    remove_item_carrinho(cliente_comprador, codigo_produto_remover, lista_produtos);
 
                     break;
                 }
