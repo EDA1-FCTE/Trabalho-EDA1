@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,10 +9,11 @@ produto* cria_lista_produtos(){
     return NULL;
 }
 
-produto* cadastrar_produto(produto* head){
+produto* cadastrar_produto(produto* head)
+{
+    int codigo;
+    produto* novo_produto = (produto*) malloc(sizeof(produto));
 
-    produto* novo_produto = (produto*) malloc(sizeof (produto));
-    
     if(novo_produto == NULL){
         printf("Nao foi possivel alocar memoria!\n");
         return head;
@@ -20,13 +22,23 @@ produto* cadastrar_produto(produto* head){
     printf("\n=== Cadastro de Novo Produto ===\n");
 
     printf("Digite o codigo do produto(Apenas numeros):\n");
-    scanf("%d", &novo_produto->codigo);
+    scanf("%d", &codigo);
+
+    // Verifica se o produto já existe
+    if (buscar_produto(head, codigo) != NULL)
+    {
+        printf("Erro: Ja existe um produto com este codigo.\n");
+        free(novo_produto);
+        return head;
+    }
+
+    novo_produto->codigo = codigo;
 
     printf("Digite o nome do produto: \n");
     scanf(" %[^\n]", novo_produto->nome);
 
     printf("Digite o preco do produto: \n");
-    scanf(" %.2f", &novo_produto->preco);
+    scanf(" %f", &novo_produto->preco);
 
     printf("Digite a quantidade: \n");
     scanf("%d", &novo_produto->quantidade);
@@ -35,15 +47,21 @@ produto* cadastrar_produto(produto* head){
 
     printf("Cadastro finalizado!\n");
 
-    return head;
+    return novo_produto;
 }
+
 
 void listar_produtos(produto* head){
     produto* produto_atual = head;
 
-    if (produto_atual != NULL){
-        printf("Nome: %s | Codigo: %d | Preco: R$: %.2f \n", produto_atual->nome, produto_atual->codigo, produto_atual->preco);
-        listar_produtos(produto_atual-> prox);
+    if (produto_atual == NULL) {
+        printf("Nenhum produto cadastrado.\n");
+        return;
+    }
+    while (produto_atual != NULL) {
+        printf("Nome: %s | Codigo: %d | Preco: R$: %.2f | Quantidade: %d\n",
+               produto_atual->nome, produto_atual->codigo, produto_atual->preco, produto_atual->quantidade);
+        produto_atual = produto_atual->prox;
     }
 }
 
@@ -57,4 +75,59 @@ produto* buscar_produto(produto* head, int codigo){
         else produto_atual= produto_atual->prox;
     }
     return NULL;
+}
+
+void editar_produto(produto* head, int codigo) {
+    produto* p = buscar_produto(head, codigo);
+    if (p == NULL) {
+        printf("Produto nao encontrado.\n");
+        return;
+    }
+    printf("Editando produto: %s\n", p->nome);
+    printf("Novo nome (atual: %s): ", p->nome);
+    scanf(" %[^\n]", p->nome);
+    printf("Novo preco (atual: %.2f): ", p->preco);
+    scanf("%f", &p->preco);
+    printf("Nova quantidade (atual: %d): ", p->quantidade);
+    scanf("%d", &p->quantidade);
+    printf("Produto atualizado com sucesso!\n");
+}
+
+produto* remover_produto(produto* head, int codigo) 
+
+{
+    produto* atual = head;
+    produto* anterior = NULL;
+
+    while (atual != NULL) 
+    {
+        if (atual->codigo == codigo) 
+        {
+            if (anterior == NULL) 
+            {
+                // Remover o primeiro produto
+                head = atual->prox;
+            } else 
+            {
+                anterior->prox = atual->prox;
+            }
+            free(atual);
+            printf("Produto removido com sucesso!\n");
+            return head;
+        }
+        anterior = atual;
+        atual = atual->prox;
+    }
+    printf("Produto nao encontrado.\n");
+    return head;
+    }
+    void liberar_lista_produtos(produto* head) 
+    {
+        produto* atual = head;
+        while (atual != NULL) 
+        {
+            produto* temp = atual;
+            atual = atual->prox;
+            free(temp);
+        }
 }

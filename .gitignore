@@ -9,5 +9,5 @@
 *.swp
 .DS_Store
 Thumbs.db
-prog #ignora o execultavel que gera quando compilamos, se gerado com o nome "prog"
-     #caso use outro nome, basta adicionar o nome do executavel que voce gera abaixo :)
+prog
+
