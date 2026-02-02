@@ -146,8 +146,25 @@ int main()
                 case 2: // Listar todos os produtos
                     listar_produtos(lista_produtos);
                     break;
-                case 3: // Buscar produto
-                    // codigo aqui
+                case 3: // Buscar produto  
+                    int codigo_busca;
+                    printf("\nDigite o codigo do produto a buscar: ");
+                    scanf("%d", &codigo_busca);
+
+                    produto* produto_encontrado = buscar_produto(lista_produtos, codigo_busca);
+                    if (produto_encontrado == NULL) 
+                    {
+                        printf("\nProduto nao encontrado.\n");
+                    } 
+                    else 
+                    {
+                        printf("\nProduto encontrado:\n");
+                        printf("Nome: %s | Codigo: %d | Preco: R$: %.2f | Quantidade: %d\n",
+                                produto_encontrado->nome,
+                                produto_encontrado->codigo,
+                                produto_encontrado->preco,
+                                produto_encontrado->quantidade);
+                    }
                     break;
                 case 4: // Editar produto
                     // codigo aqui
