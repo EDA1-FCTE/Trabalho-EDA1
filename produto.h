@@ -23,9 +23,11 @@ void listar_produtos(produto* head);
 
 produto* buscar_produto(produto* head, int codigo);
 
-//editar
+void editar_produto(produto* head, int codigo);
 
-//remover
+produto* remover_produto(produto* head, int codigo);
+
+void liberar_lista_produtos(produto* head);
 
 
 #endif
