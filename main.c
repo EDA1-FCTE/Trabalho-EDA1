@@ -93,6 +93,48 @@ int main()
 
                 case 3: // BUSCAR CLIENTE
 
+               char cpf_temporario[15];
+               cliente* resultado_busca;
+
+               switch (opcao_secundaria)
+               {
+                case 1: //CADASTRAR CLIENTES
+                cadastrar_cliente(lista_clientes);
+                break;
+
+                case 2: //LISTAR TODOS OS CLIENTES
+                listar_clientes(lista_clientes);
+                break;
+
+                case 3: //BUSCAR CLIENTE
+
+                printf("Digite o CPF para buscar: \n");
+                scanf (" %[^\n]", cpf_temporario);
+                resultado_busca = buscar_clientes(lista_clientes->prox, cpf_temporario);
+
+                if(resultado_busca != NULL){
+                    printf("\n === Resultado da busca: ===\n");
+                    printf("Nome do cliente: %s \n", resultado_busca->nome);
+                    printf("Email: %s \n", resultado_busca->email);
+                    printf("Telefone: %s\n", resultado_busca->telefone);
+                    printf("Data de Nascimento: %s \n", resultado_busca->data_de_nascimento);
+                }
+                else printf("\n === Cliente nao encontrado. ===\n");
+                break;
+
+                case 4: //EDITAR CLIENTE
+                printf("\n === EDICAO DE CLIENTE === \n");
+                printf("Digite o CPF do cliente que deseja editar: \n");
+                scanf(" %[^\n]", cpf_temporario);
+                editar_cliente(lista_clientes, cpf_temporario);
+                break;
+
+                case 5: //DELETAR CLIENTE
+                printf("Digite o CPF do cliente que deseja deletar: \n");
+                scanf(" %[^\n]", cpf_temporario);
+                deletar_cliente(lista_clientes, cpf_temporario);
+                break;
+
                 default:
                     printf("Opcao invalida.\n");
                     break;
@@ -102,7 +144,7 @@ int main()
 
             break;
 
-        case 2: // GERENCIAR PRODUTOS CADASTRADOS
+        case 2: 
             do
             {
                 cria_menu_produtos();
@@ -131,10 +173,12 @@ int main()
                     break;
                 }
             } while (opcao_secundaria != 0);
-
             break;
 
-        case 3:
+        case 3: //modo compra
+        
+                cria_menu_modo_compra();
+                cliente* cliente_comprador = escolhe_cliente_comprador(lista_clientes);
 
             cria_menu_modo_compra();
             cliente *cliente_comprador = escolhe_cliente_comprador(lista_clientes);
@@ -152,10 +196,28 @@ int main()
                 switch (opcao_secundaria)
                 {
                 case 1:
+                    
+                    printf("\nDigite o codigo do produto: ");
+                    int codigo_produto;
+                    scanf("%d", &codigo_produto);
+                    produto* produto_desejado = buscar_produto(lista_produtos, codigo_produto);
+
+                    if(produto_desejado == NULL){
+                        printf("\nProduto nao encontrado\n");
+                        break;
+                    }
+
+                    printf("\nDigite a quantidade de %s: ", produto_desejado->nome);
+                    int quantidade_produto;
+                    scanf("%d", &quantidade_produto);
+
+                    adicionar_ao_carrinho(cliente_comprador, produto_desejado, quantidade_produto);
 
                     break;
 
                 case 2:
+
+                    listar_carrinho(cliente_comprador);
 
                     break;
 
@@ -176,5 +238,8 @@ int main()
         }
     } while (opcao_principal != 0);
 
+    printf("Encerrando sistema e liberando memoria\n");
+    free_clientes(lista_clientes);
+    //colocar a funcao de liberar a lista de produtos aqui
     return 0;
 }

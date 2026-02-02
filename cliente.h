@@ -32,19 +32,19 @@ typedef struct item_carrinho
 
 typedef struct cliente
 {
-    char CPF[15];                   // vai receber apenas numeros
+    char CPF[15];                   
     char nome[101];
     char email[100];
     char telefone[20];
-    char data_de_nascimento[12];    // formato esperado: dd/mm/aaaa
+    char data_de_nascimento[12];
 
-    item_carrinho* carrinho_do_cliente; //ponteiro p/ lista do carrinho do cliente.
+    item_carrinho* carrinho_do_cliente;
 
     struct cliente* prox;
 
 } cliente;
 
-cliente* cadastrar_cliente (cliente* head);
+void cadastrar_cliente (cliente* head);
 
 cliente* cria_lista_clientes();
 
@@ -52,5 +52,17 @@ void listar_clientes(cliente* head);
 
 cliente* buscar_clientes(cliente* head, char* cpf_desejado);
 
+void adicionar_ao_carrinho(cliente* cliente_comprador, struct produto* produto_desejado, int quantidade);
+
+void editar_cliente(cliente* head, char* cpf_para_alterar);
+
+void deletar_cliente(cliente* head, char* cpf_para_deletar);
+
+void deletar_items_carrinho(item_carrinho* item);
+
+void* free_clientes(cliente* head);
+
 cliente* escolhe_cliente_comprador(cliente* head);
+
+void listar_carrinho(cliente* head);
 #endif
